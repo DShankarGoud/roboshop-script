@@ -39,3 +39,7 @@ ECHO "Setup SystemD Service"
 mv /home/roboshop/catalogue/systemd.service  /etc/systemd/system/catalogue.service
 systemctl daemon-reload &>>${LOG_FILE} && systemctl enable catlogue &>>${LOG_FILE} && systemctl restart catalogue &>>${LOG_FILE}
 statusCheck $?
+
+echo 'Attempting to recover!' > /tmp/recovery_info
+systemctl reset-failed my-app
+systemctl restart my-app
