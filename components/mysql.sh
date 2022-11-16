@@ -28,3 +28,6 @@ statusCheck $?
 ECHO "Start MySQL Service"
 systemctl enable mysqld &>>${LOG_FILE} && systemctl start mysqld &>>${LOG_FILE}
 statusCheck $?
+
+DEFAULT_PASSWORD=$(sudo grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
+
