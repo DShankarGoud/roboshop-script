@@ -28,17 +28,9 @@ cd /home/roboshop &&  rm -rf catalogue &>>${LOG_FILE} && unzip /tmp/catalogue.zi
 statusCheck $?
 
 ECHO "Install NodeJS Modules"
-cd /home/roboshop/catalogue && npm install &>>${LOG_FILE} && chown roboshop:roboshop /home/roboshop/catalogue -R
+cd /home/roboshop/catalogue && npm install &>>${LOG_FILE}
 statusCheck $?
 
-ECHO "Updated SystemD Configuration Files"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service
-statusCheck $?
-
-ECHO "Setup SystemD Service"
-mv /home/roboshop/catalogue/systemd.service  /etc/systemd/system/catalogue.service
-systemctl daemon-reload &>>${LOG_FILE} && systemctl enable catlogue &>>${LOG_FILE} && systemctl restart catalogue &>>${LOG_FILE}
-statusCheck $?
 
 
 
