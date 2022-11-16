@@ -25,3 +25,42 @@ ECHO() {
   echo -e "=========================== $1 ===========================\n" >>${LOG_FILE}
   echo "$1"
 }
+
+NODEJS() {
+ECHO "Configure NodeJS Yum Repos"
+curl -sL https://rpm.nodesource.com/setup_16.x | bash &>>${LOG_FILE}
+statusCheck $?
+
+ECHO "Install NodeJS"
+yum install nodejs -y gcc-c++ -y &>>${LOG_FILE}
+statusCheck $?
+
+
+id roboshop &>>${LOG_FILE}
+if [ $? -ne 0 ]; then
+  ECHO "Add Application User"
+  useradd roboshop &>>${LOG_FILE}
+  statusCheck $?
+fi
+
+ECHO "Download Application Content"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
+statusCheck $?
+
+ECHO "Extract Application Archive"
+cd /home/roboshop &&  rm -rf ${COMPONENT} &>>${LOG_FILE} && unzip /tmp/${COMPONENT}.zip &>>${LOG_FILE} && mv ${COMPONENT}-main ${COMPONENT}
+statusCheck $?
+
+ECHO "Install NodeJS Modules"
+cd /home/roboshop/${COMPONENT} && npm install &>>${LOG_FILE} && chown roboshop:roboshop /home/roboshop/${COMPONENT} -R
+statusCheck $?
+
+ECHO "Updated SystemD Configuration Files"
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
+statusCheck $?
+
+ECHO "Setup SystemD Service"
+mv /home/roboshop/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service
+systemctl daemon-reload &>>${LOG_FILE} && systemctl enable ${COMPONENT} &>>${LOG_FILE} && systemctl restart ${COMPONENT} &>>${LOG_FILE}
+statusCheck $?
+}
