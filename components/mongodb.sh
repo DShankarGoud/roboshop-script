@@ -27,3 +27,7 @@ ECHO "Extract Schema Zip"
 cd /tmp && unzip -o mongodb.zip &>>${LOG_FILE}
 statusCheck $?
 
+cd mongodb-main
+ECHO "Load Schema"
+mongo < catalogue.js &>>${LOG_FILE} && mongo < users.js &>>${LOG_FILE}
+statusCheck $?
