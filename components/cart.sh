@@ -2,5 +2,5 @@
 
 source components/common.sh
 checkRootUser
-COMPONENT=catalogue
+COMPONENT=cart
 NODEJS
