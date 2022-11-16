@@ -56,7 +56,7 @@ cd /home/roboshop/${COMPONENT} && npm install &>>${LOG_FILE} && chown roboshop:r
 statusCheck $?
 
 ECHO "Updated SystemD Configuration Files"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongod.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
 statusCheck $?
 
 ECHO "Setup SystemD Service"
