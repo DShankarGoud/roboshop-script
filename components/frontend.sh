@@ -32,7 +32,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>${LOG_FILE}
 statusCheck $?
 
 ECHO "Update Nginx Configuration"
-sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/' -e '/cart/ s/cart.roboshop.internal/'  /etc/nginx/default.d/roboshop.conf
+sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/' -e '/cart/ s/localhost/cart.roboshop.internal/'  /etc/nginx/default.d/roboshop.conf
 statusCheck $?
 
 ECHO "Start Nginx Service"
