@@ -28,7 +28,7 @@ cd /home/roboshop &&  rm -rf catalogue &>>${LOG_FILE} && unzip /tmp/catalogue.zi
 statusCheck $?
 
 ECHO "Install NodeJS Modules"
-cd /home/roboshop/catalogue && npm install &>>${LOG_FILE}
+cd /home/roboshop/catalogue && npm install &>>${LOG_FILE} && chown roboshop:roboshop /home/roboshop/catalogue -R
 statusCheck $?
 
 
