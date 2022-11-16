@@ -2,3 +2,5 @@
 
 source components/common.sh
 checkRootUser
+COMPONENT=catalogue
+NODEJS
