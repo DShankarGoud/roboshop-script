@@ -26,9 +26,9 @@ if [ $? -ne 0 ]; then
   statusCheck $?
 fi
 
-echo 'show plugins;' | mysql -uroot -pRoboShop@1 2>>${LOG_FILE} | grep validate_password &>>${LOG_FILE}
+echo 'show plugins' | mysql -uroot -pRoboShop@1 2>>${LOG_FILE} | grep validate_password &>>${LOG_FILE}
 if [ $? -eq 0 ]; then
   ECHO "Uninstall Password Validation Plugin"
-  ECHO "uninstall plugin validate_password;" |  mysql -uroot -pRoboShop@1 &>>$LOG_FILE
+  echo "uninstall plugin validate_password;" |  mysql -uroot -pRoboShop@1 &>>$LOG_FILE
   statusCheck $?
 fi
