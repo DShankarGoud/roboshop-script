@@ -116,6 +116,7 @@ GOLANG() {
 
   ECHO "Install GoLang"
   yum install golang -y &>>${LOG_FILE}
+  statusCheck $?
 
   APPLICATION_SETUP
 
