@@ -76,7 +76,7 @@ NODEJS() {
 }
 
 JAVA() {
-  ECHO "INtsalling Java & Maven"
+  ECHO "Intsalling Java & Maven"
   yum install maven -y &>>${LOG_FILE}
   statusCheck $?
 
@@ -109,5 +109,15 @@ PYTHON() {
   statusCheck $?
 
   SYSTEMD_SETUP
+
+}
+
+GOLANG() {
+
+  ECHO "Install GoLang"
+  yum install golang -y &>>${LOG_FILE}
+
+  APPLICATION_SETUP
+
 
 }
