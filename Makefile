@@ -26,4 +26,4 @@ mysql:
 	@bash components/mysql.sh
 
 rabbitmq:
-	@bash components/rabbimq.sh
+	@bash components/rabbitmq.sh
