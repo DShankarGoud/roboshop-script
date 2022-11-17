@@ -84,7 +84,7 @@ JAVA() {
   cd /home/roboshop/${COMPONENT} && mvn clean package &>>${LOG_FILE} && mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar &>>${LOG_FILE}
   statusCheck $?
 
-  #SYSTEMD_SETUP
+  SYSTEMD_SETUP
 
 
 }
