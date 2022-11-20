@@ -4,3 +4,4 @@ source components/common.sh
 checkRootUser
 COMPONENT=cart
 NODEJS
+#
