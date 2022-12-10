@@ -18,7 +18,7 @@ statusCheck() {
   fi
 }
 
-LOG_FILE=/tmp/roboshop.log
+LOG_FILE=/tmp/roboshop.ec2InstanceCreate
 rm -f $LOG_FILE
 
 ECHO() {
